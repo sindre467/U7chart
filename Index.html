@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://code.jquery.com/qunit/qunit-2.9.2.css"
+    />
+    <script src="https://code.jquery.com/qunit/qunit-2.9.2.js"></script>
+    <script defer src="controller.js"></script>
+    <title>test</title>
+  </head>
+  <body>
+    <div id="qunit"></div>
+    <div id="qunit-fixture"></div>
+    <script>
+     
+      var inputValue;
+      var errormsg = "";
+      var chosenBar = "";
+      var numbers = [9, 3, 10, 4, 5];
+      
+      function show() {}
+      QUnit.test("The Chosen bar", 
+        (assertVal) => {
+         numbers = [9, 3, 10, 4, 5];
+         chosenBar = 3;
+         selectB(10);
+         const result = chosenBar;
+         const select= 10;
+         assertVal.equal(select, result);
+      });
+
+      QUnit.test("Added bar and another",
+        (assertVal) => {
+         numbers = [9, 3, 10, 4, 5];
+         chosenBar = 8;
+         inputValue = 2;
+         addB(9);
+         const result = numbers;
+         const addMore = [9,3,10,4,5,2];
+         assertVal.deepEqual(addMore, result);
+      });
+
+      QUnit.test("Delete the current bar",
+        (assertVal) => {
+         numbers = [7, 3, 9, 4, 1];
+         selectB(4);
+         removeB();
+         const result = numbers;
+         const delNR = [7, 3, 9, 1];
+         assertVal.deepEqual(delNR, result);
+      });
+
+      QUnit.test("Edit the barValue", 
+        (assertVal) => {
+         numbers = [5, 4, 1, 7, 2];
+         chosenBar = 5;
+         inputValue = 10;
+         editB();
+         const result = numbers;
+         const changeVal = [5, 4, 1, 7, 10];
+         assertVal.deepEqual(changeVal, result);
+      });
+
+      QUnit.test("Add bar/s",
+        (assertVal) => {
+         numbers = [4, 1, 5, 6, 7];
+         inputValue = 3;
+         addB();
+         const result = numbers;
+         const array = [4, 1, 5, 6, 7, 3];
+         assertVal.deepEqual(result, array);
+      });
+    </script>
+  </body>
+</html>
